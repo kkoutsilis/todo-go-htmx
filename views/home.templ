@@ -16,7 +16,7 @@ templ Home(todos []models.Todo) {
         </style>
         <body>
             <div class="min-h-screen bg-gray-900 flex flex-col items-center justify-start pt-10">
-                <div class="bg-gray-700 shadow rounded-lg p-6 text-gray-200">
+                <div class="bg-gray-700 shadow rounded-lg p-6 text-gray-50">
                     <h1 class="text-xl font-semibold mb-4 text-green-500">Todo App</h1>
                     <p class="mb-6">Add your todos below and keep track of your progress.</p>
                     <form class="mb-4" hx-boost="true" hx-post="/todo" hx-target="#todoList" hx-on:submit="document.getElementById('description').value=''">
@@ -24,23 +24,23 @@ templ Home(todos []models.Todo) {
                              Description
                         </label>
                         <input
-                            class="flex h-10 w-full rounded-md border px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-600 text-gray-200 border-green-500"
+                            class="flex h-10 w-full rounded-md border px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-600 text-gray-50 border-green-500"
                             id="description"
                             placeholder="Enter todo description"
                             name="description"
                             required />
                         <button
-                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 mt-4 bg-green-500 text-gray-200"
+                            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 mt-4 bg-green-500 text-gray-50"
                             type="submit">
                             Add Todo
                         </button>
                     </form>
 
-                   <div class="h-[300px] overflow-auto  bg-gray-600">
-                        <div class="relative w-full overflow-auto">
+                   
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                             @TodoTable(todos)
-                        </div>
                     </div>
+                    
                 </div>
             </div>
         </body>

@@ -25,7 +25,7 @@ func TodoTable(todos []models.Todo) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<table class=\"w-full caption-bottom text-sm text-gray-200\" id=\"todoList\"><thead class=\"[&amp;_tr]:border-b\"><tr class=\"border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted\"><th class=\"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0\">Description</th><th class=\"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0\">Completed</th><th class=\"h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0\">Delete</th></tr></thead> <tbody class=\"[&amp;_tr:last-child]:border-0\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<table class=\"w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-50\" id=\"todoList\"><thead class=\"text-xs text-gray-700 uppercase bg-gray-200 dark:bg-green-500 dark:text-gray-100\"><tr><th scope=\"col\" class=\"px-6 py-3\">Description</th><th scope=\"col\" class=\"px-6 py-3\">Completed</th><th scope=\"col\" class=\"px-6 py-3\">Delete</th></tr></thead> <tbody>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
