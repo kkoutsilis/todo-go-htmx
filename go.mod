@@ -1,9 +1,9 @@
 module todo-go-htmx
 
-go 1.21.4
+go 1.22.0
 
 require (
-	github.com/a-h/templ v0.2.513
+	github.com/a-h/templ v0.2.543
 	github.com/gin-gonic/gin v1.9.1
 	github.com/mattn/go-sqlite3 v1.14.19
 )
