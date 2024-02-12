@@ -39,21 +39,22 @@ func (h *TodoHtmlHandler) Create(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, "", views.TodoTable(todoList))
 }
 
-func (h *TodoHtmlHandler) Complete(ctx *gin.Context) {
+func (h *TodoHtmlHandler) Update(ctx *gin.Context) {
+	// this only updates the completed status
 	id := ctx.Param("id")
 	intId, err := strconv.Atoi(id)
 	if err != nil {
-		// is this actually a bad request?
-		ctx.AbortWithError(http.StatusBadRequest, err)
+		ctx.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
+
 	todoToUpdate, err := h.Repository.GetById(int64(intId))
 	if err != nil {
 		ctx.AbortWithError(http.StatusNotFound, err)
 		return
 	}
 
-	todoToUpdate.Completed = true
+	todoToUpdate.Completed = !todoToUpdate.Completed
 	updatedTodo, err := h.Repository.Update(int64(intId), *todoToUpdate)
 	if err != nil {
 		ctx.AbortWithError(http.StatusInternalServerError, err)
@@ -67,10 +68,10 @@ func (h *TodoHtmlHandler) Delete(ctx *gin.Context) {
 	id := ctx.Param("id")
 	intId, err := strconv.Atoi(id)
 	if err != nil {
-		// is this actually a bad request?
-		ctx.AbortWithError(http.StatusBadRequest, err)
+		ctx.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
+
 	//TODO: check if exists?
 	err = h.Repository.Delete(int64(intId))
 	if err != nil {

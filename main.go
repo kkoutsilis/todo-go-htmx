@@ -37,7 +37,7 @@ func main() {
 
 	router.GET("/todo", todoHtmlHandler.GetAll)
 	router.POST("/todo", todoHtmlHandler.Create)
-	router.POST("/todo/complete/:id", todoHtmlHandler.Complete)
+	router.PATCH("/todo/:id", todoHtmlHandler.Update)
 	router.DELETE("/todo/:id", todoHtmlHandler.Delete)
 
 	router.Run(":8080")
