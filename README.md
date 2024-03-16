@@ -1,10 +1,6 @@
 # Todos Tracking App using Go with [gin](https://gin-gonic.com/), [templ](https://templ.guide/), and [htmx](https://htmx.org/).
 
 
-> [!NOTE]  
-> This project is still in progress.
- 
-
 This is a simple todo application written in Go using the gin web framework, templ for templating, and htmx for seamless client-server communication. The goal of this project was to explore these technologies and gain hands-on experience with htmx, which piqued my interest due to its unique approach.
 
 ## Technologies Used:
