@@ -31,7 +31,7 @@ func TodoTable(todos []models.Todo) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<table class=\"w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-50\" id=\"todoList\"><thead class=\"text-xs text-gray-700 uppercase bg-gray-200 dark:bg-green-500 dark:text-gray-100\"><tr><th scope=\"col\" class=\"px-6 py-3 w-3/5\">Description</th><th scope=\"col\" class=\"px-6 py-3 w-1/5\">Completed</th><th scope=\"col\" class=\"px-6 py-3 w-1/5\">Delete</th></tr></thead> <tbody>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<table class=\"w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-50\" id=\"todoList\"><thead class=\"text-xs text-gray-700 uppercase bg-gray-200 dark:bg-green-500 dark:text-gray-100\"><tr><th scope=\"col\" class=\"px-6 py-3 text-left w-3/5\">Description</th><th scope=\"col\" class=\"px-6 py-3 text-center w-1/5\">Completed</th><th scope=\"col\" class=\"px-6 py-3 text-center w-1/5\">Delete</th></tr></thead> <tbody>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

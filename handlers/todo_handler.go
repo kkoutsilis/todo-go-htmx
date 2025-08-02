@@ -40,7 +40,6 @@ func (h *TodoHtmlHandler) Create(ctx *gin.Context) {
 }
 
 func (h *TodoHtmlHandler) Update(ctx *gin.Context) {
-	// this only updates the completed status
 	id := ctx.Param("id")
 	intId, err := strconv.Atoi(id)
 	if err != nil {
@@ -54,7 +53,14 @@ func (h *TodoHtmlHandler) Update(ctx *gin.Context) {
 		return
 	}
 
-	todoToUpdate.Completed = !todoToUpdate.Completed
+	if completedValue := ctx.PostForm("completed"); completedValue != "" {
+		todoToUpdate.Completed = !todoToUpdate.Completed
+	}
+
+	if description := ctx.PostForm("description"); description != "" {
+		todoToUpdate.Description = description
+	}
+
 	updatedTodo, err := h.Repository.Update(int64(intId), *todoToUpdate)
 	if err != nil {
 		ctx.AbortWithError(http.StatusInternalServerError, err)

@@ -4,11 +4,37 @@ import models "todo-go-htmx/models"
 
 templ TodoTableItem(todo models.Todo) {
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600 dark:hover:bg-grey-400" id={templ.EscapeString(string("todo-"+ strconv.Itoa(int(todo.Id)))) } >
-        <td  class="px-6 py-4 break-words max-w-0">
-            <div class="whitespace-normal">{ todo.Description }</div>
+        <td class="px-6 py-4 break-words max-w-0 text-left">
+            <div class="whitespace-normal">
+                <p title="Click here to update"
+                    contenteditable="true"
+                    hx-patch={templ.EscapeString(string("/todo/"+ strconv.Itoa(int(todo.Id))))}
+                    hx-trigger="blur, keydown[enter]"
+                    hx-target={templ.EscapeString(string("#todo-"+ strconv.Itoa(int(todo.Id))))}
+                    hx-swap="outerHTML"
+                    onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}"
+                    name="description"
+                    hx-vals='js:{"description": this.innerText}'
+                >
+                    { todo.Description }
+                </p>
+            </div>
         </td>
-        <td  class="px-6 py-4" title="Click to update" hx-patch={templ.EscapeString(string("/todo/"+ strconv.Itoa(int(todo.Id))))} hx-target={templ.EscapeString(string("#todo-"+ strconv.Itoa(int(todo.Id))))} hx-trigger="click"  hx-swap="outerHTML">{ strconv.FormatBool(todo.Completed)}</td>
-        <td><button class="inline-flex items-center justify-center whitespace-nowrap
+        <td class="px-6 py-4 text-center">
+            <input 
+                type="checkbox" 
+                checked?={todo.Completed}
+                hx-patch={templ.EscapeString(string("/todo/"+ strconv.Itoa(int(todo.Id))))}
+                hx-target={templ.EscapeString(string("#todo-"+ strconv.Itoa(int(todo.Id))))}
+                hx-trigger="change"
+                hx-swap="outerHTML"
+                name="completed"
+                hx-vals='js:{"completed": this.checked? "true" : "false"}'
+                class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+        </td>
+        <td class="text-center">
+            <button class="inline-flex items-center justify-center whitespace-nowrap
                         rounded-md text-sm font-medium ring-offset-background
                         transition-colors focus-visible:outline-none focus-visible:ring-2
                         focus-visible:ring-ring focus-visible:ring-offset-2
@@ -18,6 +44,7 @@ templ TodoTableItem(todo models.Todo) {
                         hx-delete={templ.EscapeString(string("/todo/"+ strconv.Itoa(int(todo.Id))))}
                         hx-confirm="Are you sure you want to delete this Todo?" 
                         hx-target="closest tr"
-                        hx-swap="outerHTML swap:1s">Delete</button></td>
+                        hx-swap="outerHTML swap:1s">Delete</button>
+        </td>
     </tr>
 }
