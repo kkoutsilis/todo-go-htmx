@@ -45,27 +45,27 @@ func TodoTableItem(todo models.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><td class=\"px-6 py-4\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"><td class=\"px-6 py-4 break-words max-w-0\"><div class=\"whitespace-normal\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(todo.Description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 7, Col: 49}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 8, Col: 61}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</td><td class=\"px-6 py-4\" title=\"Click to update\" hx-patch=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div></td><td class=\"px-6 py-4\" title=\"Click to update\" hx-patch=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("/todo/" + strconv.Itoa(int(todo.Id)))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 8, Col: 129}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 10, Col: 129}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
@@ -78,7 +78,7 @@ func TodoTableItem(todo models.Todo) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("#todo-" + strconv.Itoa(int(todo.Id)))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 8, Col: 206}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 10, Col: 206}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -91,7 +91,7 @@ func TodoTableItem(todo models.Todo) templ.Component {
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.FormatBool(todo.Completed))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 8, Col: 284}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 10, Col: 284}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
@@ -104,7 +104,7 @@ func TodoTableItem(todo models.Todo) templ.Component {
 		var templ_7745c5c3_Var7 string
 		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("/todo/" + strconv.Itoa(int(todo.Id)))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 16, Col: 99}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 18, Col: 99}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {

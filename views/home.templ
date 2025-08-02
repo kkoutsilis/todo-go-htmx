@@ -1,15 +1,18 @@
 package views
-import "todo-go-htmx/models"
+import (
+    "todo-go-htmx/models"
+    "todo-go-htmx/utilities"
+    )
 
 templ Home(todos []models.Todo) {
     <html>
-        @Head("Todo App")
+        @utilities.Head("Todo App")
         <body>
             <div class="min-h-screen bg-gray-900 flex flex-col items-center justify-start pt-10 px-4">
                     <div class="w-full max-w-2xl bg-gray-800 shadow-2xl rounded-xl p-8 text-gray-50 border border-gray-600">
                         <div class="text-center mb-8">
                             <div class="flex justify-center mb-4">
-                                @LogoMedium()
+                                @utilities.LogoMedium()
                         </div>
                         
                         <h1 class="text-3xl font-bold mb-2 text-green-400">Todo App</h1>

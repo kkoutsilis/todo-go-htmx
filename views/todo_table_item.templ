@@ -4,7 +4,9 @@ import models "todo-go-htmx/models"
 
 templ TodoTableItem(todo models.Todo) {
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-600 dark:hover:bg-grey-400" id={templ.EscapeString(string("todo-"+ strconv.Itoa(int(todo.Id)))) } >
-        <td  class="px-6 py-4">{ todo.Description }</td>
+        <td  class="px-6 py-4 break-words max-w-0">
+            <div class="whitespace-normal">{ todo.Description }</div>
+        </td>
         <td  class="px-6 py-4" title="Click to update" hx-patch={templ.EscapeString(string("/todo/"+ strconv.Itoa(int(todo.Id))))} hx-target={templ.EscapeString(string("#todo-"+ strconv.Itoa(int(todo.Id))))} hx-trigger="click"  hx-swap="outerHTML">{ strconv.FormatBool(todo.Completed)}</td>
         <td><button class="inline-flex items-center justify-center whitespace-nowrap
                         rounded-md text-sm font-medium ring-offset-background

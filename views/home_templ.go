@@ -8,7 +8,10 @@ package views
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "todo-go-htmx/models"
+import (
+	"todo-go-htmx/models"
+	"todo-go-htmx/utilities"
+)
 
 func Home(todos []models.Todo) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -35,7 +38,7 @@ func Home(todos []models.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = Head("Todo App").Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = utilities.Head("Todo App").Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -43,7 +46,7 @@ func Home(todos []models.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = LogoMedium().Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = utilities.LogoMedium().Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
