@@ -45,7 +45,8 @@ make dev
 
 ![Todo App](app.png)
 
-## Future Development
-As I am still relatively new to Go and its ecosystem, I plan to continue learning and expanding my skills in both backend and frontend development. Suggestions and contributions are welcome!
+## Contributing
+
+Have a look at the [CONTRIBUTING.md](CONTRIBUTING.md)
 
 Feel free to reach out if you have any questions or feedback.
