@@ -4,7 +4,7 @@ import "todo-go-htmx/models"
 templ Home(todos []models.Todo) {
     <html>
         <head>
-            <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
             <script src="https://cdn.tailwindcss.com"></script>
             <title>Todo App</title>
         </head>
@@ -19,7 +19,7 @@ templ Home(todos []models.Todo) {
                 <div class="bg-gray-700 shadow rounded-lg p-6 text-gray-50">
                     <h1 class="text-xl font-semibold mb-4 text-green-500">Todo App</h1>
                     <p class="mb-6">Add your todos below and keep track of your progress.</p>
-                    <form class="mb-4" hx-boost="true" hx-post="/todo" hx-target="#todoList" hx-on:submit="document.getElementById('description').value=''">
+                    <form class="mb-4" hx-boost="true" hx-post="/todo" hx-target="#todoList" hx-on:htmx:submit="document.getElementById('description').value=''">
                         <label class="block text-sm font-medium mb-1" for="description">
                              Description
                         </label>
