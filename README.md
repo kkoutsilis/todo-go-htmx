@@ -34,9 +34,9 @@ go get ./...
 
 ## Running the Application
 
-1. Build and run the application
+1. Run the application
 ```bash
-go run .
+make dev
 ```
 
 2. Open your web browser and navigate to http://localhost:8080 to access the app.
