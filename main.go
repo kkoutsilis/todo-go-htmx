@@ -30,6 +30,8 @@ func main() {
 	router := gin.Default()
 	router.HTMLRender = &TemplRender{}
 
+	router.Static("/static", "./static")
+
 	homeHtmlHandler := handlers.HomeHtmlHandler{Repository: repository}
 	todoHtmlHandler := handlers.TodoHtmlHandler{Repository: repository}
 

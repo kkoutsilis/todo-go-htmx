@@ -31,7 +31,23 @@ func Home(todos []models.Todo) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<html><head><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js\" integrity=\"sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm\" crossorigin=\"anonymous\"></script><script src=\"https://cdn.tailwindcss.com\"></script><title>Todo App</title></head><style type=\"text/css\">\n            tr.htmx-swapping td {\n                opacity: 0;\n                transition: opacity 1s ease-out;\n            }\n        </style><body><div class=\"min-h-screen bg-gray-900 flex flex-col items-center justify-start pt-10\"><div class=\"bg-gray-700 shadow rounded-lg p-6 text-gray-50\"><h1 class=\"text-xl font-semibold mb-4 text-green-500\">Todo App</h1><p class=\"mb-6\">Add your todos below and keep track of your progress.</p><form class=\"mb-4\" hx-boost=\"true\" hx-post=\"/todo\" hx-target=\"#todoList\" hx-on:htmx:submit=\"document.getElementById('description').value=''\"><label class=\"block text-sm font-medium mb-1\" for=\"description\">Description</label> <input class=\"flex h-10 w-full rounded-md border px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-gray-600 text-gray-50 border-green-500\" id=\"description\" placeholder=\"Enter todo description\" name=\"description\" required> <button class=\"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 mt-4 bg-green-500 text-gray-50\" type=\"submit\">Add Todo</button></form><div class=\"relative overflow-x-auto shadow-md sm:rounded-lg\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<html>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = Head("Todo App").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<body><div class=\"min-h-screen bg-gray-900 flex flex-col items-center justify-start pt-10 px-4\"><div class=\"w-full max-w-2xl bg-gray-800 shadow-2xl rounded-xl p-8 text-gray-50 border border-gray-600\"><div class=\"text-center mb-8\"><div class=\"flex justify-center mb-4\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = LogoMedium().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</div><h1 class=\"text-3xl font-bold mb-2 text-green-400\">Todo App</h1><p class=\"text-gray-300\">Add your todos below and keep track of your progress.</p></div><div class=\"bg-gray-700 rounded-lg p-6 mb-6 border border-gray-600\"><form class=\"space-y-4\" hx-boost=\"true\" hx-post=\"/todo\" hx-target=\"#todoList\" hx-on:htmx:after-request=\"document.getElementById('description').value = ''\"><div><label class=\"block text-sm font-medium mb-2 text-gray-200\" for=\"description\">Description</label> <input class=\"w-full h-12 rounded-lg border-2 px-4 py-3 text-sm bg-gray-600 text-gray-50 border-gray-500 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200\" id=\"description\" placeholder=\"Enter todo description...\" name=\"description\" required></div><button class=\"w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-700\" type=\"submit\"><span class=\"flex items-center justify-center\"><svg class=\"w-5 h-5 mr-2\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 6v6m0 0v6m0-6h6m-6 0H6\"></path></svg> Add Todo</span></button></form></div><div class=\"bg-gray-700 rounded-lg border border-gray-600 overflow-hidden\"><div class=\"px-6 py-4 border-b border-gray-600\"><h2 class=\"text-lg font-semibold text-gray-200\">Your Todos</h2></div><div class=\"relative overflow-x-auto\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -39,7 +55,7 @@ func Home(todos []models.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div></div></div></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div></div></div></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
