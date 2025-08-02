@@ -3,6 +3,7 @@ package handlers
 import (
 	"net/http"
 	"strconv"
+	"strings"
 	"todo-go-htmx/database"
 	"todo-go-htmx/models"
 	"todo-go-htmx/views"
@@ -58,7 +59,19 @@ func (h *TodoHtmlHandler) Update(ctx *gin.Context) {
 	}
 
 	if description := ctx.PostForm("description"); description != "" {
-		todoToUpdate.Description = description
+		trimmedDescription := strings.TrimSpace(description)
+		if trimmedDescription == "" {
+			ctx.Header("HX-Reswap", "none")
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Description cannot be empty"})
+			return
+		}
+		todoMaxLength := 500
+		if len(trimmedDescription) > todoMaxLength {
+			ctx.Header("HX-Reswap", "none")
+			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Description too long (max 500 characters)"})
+			return
+		}
+		todoToUpdate.Description = trimmedDescription
 	}
 
 	updatedTodo, err := h.Repository.Update(int64(intId), *todoToUpdate)

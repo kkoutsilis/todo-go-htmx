@@ -9,12 +9,16 @@ templ TodoTableItem(todo models.Todo) {
                 <p title="Click here to update"
                     contenteditable="true"
                     hx-patch={templ.EscapeString(string("/todo/"+ strconv.Itoa(int(todo.Id))))}
-                    hx-trigger="blur, keydown[enter]"
+                    hx-trigger="blur[validateDescription(this)] delay:100ms, keydown[enter][validateDescription(this)]"
                     hx-target={templ.EscapeString(string("#todo-"+ strconv.Itoa(int(todo.Id))))}
                     hx-swap="outerHTML"
                     onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}"
+                    onfocus="this.classList.add('editing')"
+                    onblur="this.classList.remove('editing', 'error')"
                     name="description"
-                    hx-vals='js:{"description": this.innerText}'
+                    hx-vals='js:{"description": this.innerText.trim()}'
+                    data-original-text={ todo.Description }
+                    class="min-h-[1.5rem] outline-none focus:bg-gray-100 dark:focus:bg-gray-600 rounded px-2 py-1 transition-colors"
                 >
                     { todo.Description }
                 </p>
@@ -29,7 +33,7 @@ templ TodoTableItem(todo models.Todo) {
                 hx-trigger="change"
                 hx-swap="outerHTML"
                 name="completed"
-                hx-vals='js:{"completed": this.checked? "true" : "false"}'
+                hx-vals='js:{"completed": this.checked ? "true" : "false"}'
                 class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             />
         </td>
@@ -47,4 +51,41 @@ templ TodoTableItem(todo models.Todo) {
                         hx-swap="outerHTML swap:1s">Delete</button>
         </td>
     </tr>
+
+    <script>
+    function validateDescription(element) {
+        const newText = element.innerText.trim();
+        const originalText = element.getAttribute('data-original-text');
+        
+        if (newText === '') {
+            element.classList.add('error');
+            element.innerText = originalText;
+
+            const errorMsg = document.createElement('div');
+            errorMsg.textContent = 'Description cannot be empty!';
+            errorMsg.className = 'absolute bg-red-500 text-white px-2 py-1 rounded text-sm z-10';
+            errorMsg.style.top = element.offsetTop + element.offsetHeight + 'px';
+            errorMsg.style.left = element.offsetLeft + 'px';
+            
+            element.parentElement.style.position = 'relative';
+            element.parentElement.appendChild(errorMsg);
+            
+            setTimeout(() => {
+                if (errorMsg.parentElement) {
+                    errorMsg.parentElement.removeChild(errorMsg);
+                }
+                element.classList.remove('error');
+            }, 2000);
+            
+            return false;
+        }
+        
+        if (newText === originalText) {
+            return false;
+        }
+        
+        element.setAttribute('data-original-text', newText);
+        return true;
+    }
+    </script>
 }

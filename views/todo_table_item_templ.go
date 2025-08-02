@@ -58,7 +58,7 @@ func TodoTableItem(todo models.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" hx-trigger=\"blur, keydown[enter]\" hx-target=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" hx-trigger=\"blur[validateDescription(this)] delay:100ms, keydown[enter][validateDescription(this)]\" hx-target=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -71,69 +71,82 @@ func TodoTableItem(todo models.Todo) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" hx-swap=\"outerHTML\" onkeydown=\"if(event.key==='Enter'){event.preventDefault();this.blur();}\" name=\"description\" hx-vals='js:{\"description\": this.innerText}'>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" hx-swap=\"outerHTML\" onkeydown=\"if(event.key==='Enter'){event.preventDefault();this.blur();}\" onfocus=\"this.classList.add('editing')\" onblur=\"this.classList.remove('editing', 'error')\" name=\"description\" hx-vals='js:{\"description\": this.innerText.trim()}' data-original-text=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(todo.Description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 19, Col: 38}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 20, Col: 57}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</p></div></td><td class=\"px-6 py-4 text-center\"><input type=\"checkbox\"")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		if todo.Completed {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, " checked")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, " hx-patch=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\" class=\"min-h-[1.5rem] outline-none focus:bg-gray-100 dark:focus:bg-gray-600 rounded px-2 py-1 transition-colors\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
-		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("/todo/" + strconv.Itoa(int(todo.Id)))))
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(todo.Description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 27, Col: 90}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 23, Col: 38}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\" hx-target=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</p></div></td><td class=\"px-6 py-4 text-center\"><input type=\"checkbox\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		if todo.Completed {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, " checked")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, " hx-patch=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
-		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("#todo-" + strconv.Itoa(int(todo.Id)))))
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("/todo/" + strconv.Itoa(int(todo.Id)))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 28, Col: 91}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 31, Col: 90}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" hx-trigger=\"change\" hx-swap=\"outerHTML\" name=\"completed\" hx-vals='js:{\"completed\": this.checked? \"true\" : \"false\"}' class=\"w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600\"></td><td class=\"text-center\"><button class=\"inline-flex items-center justify-center whitespace-nowrap\n                        rounded-md text-sm font-medium ring-offset-background\n                        transition-colors focus-visible:outline-none focus-visible:ring-2\n                        focus-visible:ring-ring focus-visible:ring-offset-2\n                        disabled:pointer-events-none disabled:opacity-50\n                        hover:bg-primary/90 h-10 px-4 py-2 mt-4 mb-4\n                        bg-red-500 text-gray-200\" hx-delete=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" hx-target=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var8 string
-		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("/todo/" + strconv.Itoa(int(todo.Id)))))
+		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("#todo-" + strconv.Itoa(int(todo.Id)))))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 44, Col: 99}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 32, Col: 91}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\" hx-confirm=\"Are you sure you want to delete this Todo?\" hx-target=\"closest tr\" hx-swap=\"outerHTML swap:1s\">Delete</button></td></tr>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\" hx-trigger=\"change\" hx-swap=\"outerHTML\" name=\"completed\" hx-vals='js:{\"completed\": this.checked ? \"true\" : \"false\"}' class=\"w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600\"></td><td class=\"text-center\"><button class=\"inline-flex items-center justify-center whitespace-nowrap\n                        rounded-md text-sm font-medium ring-offset-background\n                        transition-colors focus-visible:outline-none focus-visible:ring-2\n                        focus-visible:ring-ring focus-visible:ring-offset-2\n                        disabled:pointer-events-none disabled:opacity-50\n                        hover:bg-primary/90 h-10 px-4 py-2 mt-4 mb-4\n                        bg-red-500 text-gray-200\" hx-delete=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var9 string
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(templ.EscapeString(string("/todo/" + strconv.Itoa(int(todo.Id)))))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/todo_table_item.templ`, Line: 48, Col: 99}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "\" hx-confirm=\"Are you sure you want to delete this Todo?\" hx-target=\"closest tr\" hx-swap=\"outerHTML swap:1s\">Delete</button></td></tr><script>\n    function validateDescription(element) {\n        const newText = element.innerText.trim();\n        const originalText = element.getAttribute('data-original-text');\n        \n        if (newText === '') {\n            element.classList.add('error');\n            element.innerText = originalText;\n\n            const errorMsg = document.createElement('div');\n            errorMsg.textContent = 'Description cannot be empty!';\n            errorMsg.className = 'absolute bg-red-500 text-white px-2 py-1 rounded text-sm z-10';\n            errorMsg.style.top = element.offsetTop + element.offsetHeight + 'px';\n            errorMsg.style.left = element.offsetLeft + 'px';\n            \n            element.parentElement.style.position = 'relative';\n            element.parentElement.appendChild(errorMsg);\n            \n            setTimeout(() => {\n                if (errorMsg.parentElement) {\n                    errorMsg.parentElement.removeChild(errorMsg);\n                }\n                element.classList.remove('error');\n            }, 2000);\n            \n            return false;\n        }\n        \n        if (newText === originalText) {\n            return false;\n        }\n        \n        element.setAttribute('data-original-text', newText);\n        return true;\n    }\n    </script>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
